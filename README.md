@@ -19,7 +19,6 @@ This is a simple ticket booking dashboard built with the Node.js, Express.js, Mo
 
 - `POST /api/auth/register` - Register a new user.
 - `POST /api/auth/login` - Login a user.
-- `POST /api/auth/refresh-token` - Refresh JWT token.
 - `POST /api/auth/logout` - Logout a user.
 
 ### Users
