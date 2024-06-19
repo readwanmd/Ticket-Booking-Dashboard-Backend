@@ -3,13 +3,13 @@ const connectDB = require('./config/db');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
+app.use(cors());
+app.use(express.json());
 dotenv.config();
 
 const app = express();
 
 connectDB();
-app.use(cors());
-app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) => res.send('API Running'));
 
