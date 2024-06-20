@@ -21,7 +21,7 @@ exports.register = async (req, res) => {
 			{ expiresIn: '1h' },
 			(err, token) => {
 				if (err) throw err;
-				res.json({ token });
+				res.json({ token: token, id: user._id });
 			}
 		);
 	} catch (err) {
@@ -35,6 +35,7 @@ exports.login = async (req, res) => {
 
 	try {
 		const user = await User.findOne({ email });
+		console.log(user);
 		if (!user) {
 			return res.status(400).json({ msg: 'Invalid credentials' });
 		}
@@ -51,7 +52,7 @@ exports.login = async (req, res) => {
 			{ expiresIn: '1h' },
 			(err, token) => {
 				if (err) throw err;
-				res.json({ token });
+				res.json({ token: token, id: user._id });
 			}
 		);
 	} catch (err) {
