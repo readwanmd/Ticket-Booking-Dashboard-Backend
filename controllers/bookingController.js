@@ -35,21 +35,21 @@ exports.createBooking = async (req, res) => {
 			return res.status(404).json({ msg: 'Event not found' });
 		}
 
-		if (event.capacity < event.ticketsSold + tickets) {
+		if (event.capacity < event.ticketsSold + Number(tickets)) {
 			return res.status(400).json({ msg: 'Not enough tickets available' });
 		}
 
-		const totalCost = event.price * tickets;
+		const totalCost = event.price * Number(tickets);
 		// console.log(req.user);
 
 		const newBooking = new Booking({
 			event: eventId,
 			user: req.user._id,
-			tickets,
+			tickets: Number(tickets),
 			totalCost,
 		});
 
-		event.ticketsSold += tickets;
+		event.ticketsSold += Number(tickets);
 		await event.save();
 
 		const booking = await newBooking.save();
