@@ -14,7 +14,8 @@ exports.getAllBookings = async (req, res) => {
 exports.userBooking = async (req, res) => {
 	try {
 		const userId = req.params.id;
-		const bookings = await Booking.find({ user: userId });
+		const bookings = await Booking.find({ user: userId }).populate('event');
+
 		res.json(bookings);
 	} catch (error) {
 		res.status(500).json({ message: 'Server error' });
